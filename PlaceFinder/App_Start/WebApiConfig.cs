@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 
 namespace PlaceFinder
@@ -19,6 +18,15 @@ namespace PlaceFinder
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //JSON formatting
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.Formatting = Formatting.Indented;
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //json.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            //Remove XML formatting
+            config.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
     }
 }
