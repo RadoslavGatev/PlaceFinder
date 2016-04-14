@@ -10,11 +10,11 @@ namespace PlaceFinder.Models
     [SerializePropertyNamesAsCamelCase]
     public class Place
     {
-        public string Place_Id { get; set; }
-        public string Name_BG { get; set; }
-        public string Name_EN { get; set; }
+        public string PlaceId { get; set; }
+        public string NameBg { get; set; }
+        public string NameEn { get; set; }
         public GeographyPoint Location { get; set; }
-        public string Place_Type { get; set; }
+        public string PlaceType { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Website { get; set; }

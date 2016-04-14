@@ -27,7 +27,7 @@ function Search() {
             viewModel.placesCount(data.count);
 
             if (data.facets != null) {
-                var typeFacets = data.facets.place_type;
+                var typeFacets = data.facets.placeType;
                 typeFacets = $.map(typeFacets, function (facet) {
                     facet.text = facet.value + " (" + facet.count + ")";
                     return facet;

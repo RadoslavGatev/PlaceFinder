@@ -38,19 +38,19 @@ namespace PlaceFinder.Services
                 // Add count
                 IncludeTotalResultCount = true,
                 // Add search highlights
-                //HighlightFields = new List<String>() { "Name_BG" },
+                //HighlightFields = new List<String>() { "nameBg" },
                 //HighlightPreTag = "<b>",
                 //HighlightPostTag = "</b>"
             };
 
             if (typeFilter != null)
             {
-                sp.Filter = "place_type eq '" + typeFilter + "'";
+                sp.Filter = "placeType eq '" + typeFilter + "'";
             }
 
             if (typeFacet)
             {
-                sp.Facets = new List<string> { "place_type" };
+                sp.Facets = new List<string> { "placeType" };
             }
 
             var results = await _indexClient.Documents.SearchAsync<Place>(query, sp);

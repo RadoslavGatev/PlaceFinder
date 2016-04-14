@@ -1,7 +1,9 @@
 CREATE VIEW GetData AS
 SELECT 
-[node_id] as [place_id], ISNULL(ISNULL([name], [name_bg]), [name_en]) as [name_bg], [name_en],
-location,
+[node_id] as [placeId], 
+ISNULL(ISNULL([name], [name_bg]), [name_en]) as [nameBg], 
+[name_en] as [nameEn],
+[location],
  (
  CASE
  WHEN [tourism] IS NOT NULL
@@ -62,7 +64,7 @@ WHEN [abandonedamenity] IS NOT NULL
 	THEN [abandonedamenity]
  ELSE 'general'
  END
- ) AS [place_type],
+ ) AS [placeType],
  	(
 	CASE 
 		WHEN [addr_street] IS NOT NULL
@@ -71,7 +73,8 @@ WHEN [abandonedamenity] IS NOT NULL
 		ELSE NULL
 	END
 	) AS [address],
- [phone], [website],
+ [phone], 
+ [website],
  [note]
  FROM
  (
