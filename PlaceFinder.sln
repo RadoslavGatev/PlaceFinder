@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceFinder", "PlaceFinder\PlaceFinder.csproj", "{97EA0733-E3BC-4D7B-992D-366C7A693C38}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{8A1046DF-339F-4A50-941C-22FF15E15459}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\GetData.sql = SQL\GetData.sql
+		SQL\osm.bacpac = SQL\osm.bacpac
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
