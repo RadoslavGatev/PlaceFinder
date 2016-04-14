@@ -11,6 +11,11 @@ var viewModel = {
 var map = null;
 
 function Search() {
+    map.setView({
+        center: { latitude: 42.69562247634483, longitude: 23.322418397495518 },
+        zoom: 12
+    });
+
     $.get("api/places/search",
        ko.toJS(viewModel.searchParams),
         function (data) {
@@ -70,6 +75,15 @@ $(function () {
     $("body").on("click", ".facet-filter", function (e) {
         e.preventDefault();
         viewModel.searchParams.placeType($(this).data("facet"));
+    });
+
+    $("body").on("click", ".show-on-map", function (e) {
+        e.preventDefault();
+        var index = $(this).data("place-index");
+        map.setView({
+            center: viewModel.places()[index].location,
+            zoom: 18
+        });
     });
 
     Search();
