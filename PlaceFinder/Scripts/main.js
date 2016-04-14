@@ -86,6 +86,10 @@ $(function () {
             center: viewModel.places()[index].location,
             zoom: 18
         });
+
+        $('html, body').animate({
+            scrollTop: $("#places-page-map").offset().top - 80
+        }, 1000);
     });
 
     Search();

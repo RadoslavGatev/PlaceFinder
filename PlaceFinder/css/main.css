@@ -940,11 +940,10 @@ span.places-count {color: #000;}
 /* places Item */
 .place-single .widget-title {margin-top: 20px;}
 .places-item {
-	margin-bottom: 15px;
 	padding: 20px 20px 20px 0;
 	position: relative;
+    min-height: 130px;
 }
-.places-item:first-child {margin-top: 20px;}
 .places-item .thumb {
 	display: none;
 	padding: 3px;

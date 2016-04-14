@@ -63,19 +63,26 @@
                 <div id="places-page-map" style="position:relative;width:750px; height:350px">
                 </div>
                 <h3><span class="places-count" id="places-count" data-bind="text: placesCount"></span> Results</h3>
-                <div id="place_details_div" data-bind="foreach: places">
-                    <div class="places-item">
-                        <div class="clearfix visible-xs"></div>
-                        <div class="location-icon"></div>
-                        <h6 class="title">
-                            <a href="#" class="show-on-map" data-bind="text: nameBg, attr:{'data-place-index': $index}"></a>
-                        </h6>
-                        <span class="meta">1 Centre St., N.Y.</span>
-                        <p class="description">
-                            <b>Salary:</b> $51,934 to $65,000 Annual
-                        </p>
-                        <p class="description" data-bind="text: note">
-                        </p>
+                <div class="row">
+                    <div data-bind="foreach: places">
+                        <div class="places-item col-md-4">
+                            <div class="clearfix visible-xs"></div>
+                            <div class="location-icon"></div>
+                            <h6 class="title">
+                                <a href="#" class="show-on-map"
+                                   data-bind="text: ((nameEn)? nameBg + ' ('+ nameEn+')': nameBg), attr:{'data-place-index': $index}"></a>
+                            </h6>
+                            <span class="meta" data-bind="text: address"></span>
+                            <p class="description" data-bind="if: phone">
+                                <b>Phone:</b> <span data-bind="text: phone"></span>
+                            </p>
+                            <p class="description" data-bind="if: website">
+                                <a data-bind="attr:{href: website}, text: website"></a>
+                            </p>
+                            <p class="description" data-bind="if: note">
+                                <span data-bind="text: note"></span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div> <!-- end .page-content -->
