@@ -33,7 +33,7 @@
             <div class="col-sm-4 page-sidebar">
                 <aside>
                     <div class="sidebar-container">
-                        <div class="widget sidebar-widget jobs-search-widget">
+                        <div class="widget sidebar-widget places-search-widget">
                             <h5 class="widget-title" id="title">Search</h5>
                             <div class="widget-content clearfix">
                                 <div id="remote">
@@ -43,12 +43,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="widget sidebar-widget jobs-filter-widget">
+                        <div class="widget sidebar-widget places-filter-widget">
                             <h5 class="widget-title">Filter Results <a onclick="viewModel.searchParams.placeType(null)" href="javascript:void(0)">X</a></h5>
                             <p id="filterReset"></p>
                             <div class="widget-content">
-                                <h6 id="businessTitleFacetTitle">Place Type</h6>
-                                <ul id="posting_type_facets" class="filter-list" data-bind="foreach: typeFacets">
+                                <h6 id="facet-title">Place Type</h6>
+                                <ul id="place_type_facets" class="filter-list" data-bind="foreach: typeFacets">
                                     <li>
                                         <a href="#" class="facet-filter" data-bind="text: text, attr:{'data-facet': value}"></a>
                                     </li>
@@ -60,11 +60,11 @@
             </div> <!-- end .page-sidebar -->
 
             <div class="col-sm-8 page-content">
-                <div id="jobs-page-map" style="position:relative;width:750px; height:350px">
+                <div id="places-page-map" style="position:relative;width:750px; height:350px">
                 </div>
-                <h3><span class="jobs-count" id="jobs-count" data-bind="text: placesCount"></span> Results</h3>
-                <div id="job_details_div" data-bind="foreach: places">
-                    <div class="jobs-item">
+                <h3><span class="places-count" id="places-count" data-bind="text: placesCount"></span> Results</h3>
+                <div id="place_details_div" data-bind="foreach: places">
+                    <div class="places-item">
                         <div class="clearfix visible-xs"></div>
                         <div class="location-icon"></div>
                         <h6 class="title">

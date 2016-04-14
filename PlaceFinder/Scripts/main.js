@@ -49,7 +49,7 @@ viewModel.searchParams.placeType.subscribe(Search);
 $(function () {
     ko.applyBindings(viewModel);
 
-    map = new Microsoft.Maps.Map(document.getElementById("jobs-page-map"),
+    map = new Microsoft.Maps.Map(document.getElementById("places-page-map"),
            {
                credentials: "AhcILuRioQUg100rFMWF6SFQLjkw-jEW5cmz29E2RZnMp7BbhPxrwE0U5fOyxGv2",
                center: { latitude: 42.69562247634483, longitude: 23.322418397495518 },
