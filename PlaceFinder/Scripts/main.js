@@ -38,8 +38,6 @@ function Search() {
         });
 }
 
-
-
 viewModel.searchParams.query.subscribe(function () {
     //reset it
     viewModel.searchParams.placeType(null);
@@ -68,7 +66,11 @@ $(function () {
         source: "/api/places/suggest",
         minLength: 2,
         select: function () {
-            $("#q").trigger("change");
+            setTimeout(function () {
+                $(':focus').blur();
+                $("#q").trigger("change");
+                Search();
+            }, 1);
         }
     });
 
