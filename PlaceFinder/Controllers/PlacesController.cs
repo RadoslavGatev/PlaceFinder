@@ -25,9 +25,10 @@ namespace PlaceFinder.Controllers
 
         [Route("search")]
         [HttpGet]
-        public async Task<DocumentSearchResult<Place>> Search(string query, bool typeFacet = true)
+        public async Task<DocumentSearchResult<Place>> Search(string query,
+            string placeType, bool typeFacet = true)
         {
-            var places = await _placesService.Search(query, typeFacet);
+            var places = await _placesService.Search(query, typeFacet, placeType);
             return places;
         }
 

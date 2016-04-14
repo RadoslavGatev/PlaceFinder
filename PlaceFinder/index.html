@@ -37,21 +37,20 @@
                             <h5 class="widget-title" id="title">Search</h5>
                             <div class="widget-content clearfix">
                                 <div id="remote">
-                                    <input class="form-control walkthrough-1" type="text" id="q" placeholder="Search Jobs">
+                                    <input class="form-control walkthrough-1" type="text" id="q" placeholder="Search Places"
+                                           data-bind="value: searchParams.query">
                                     <input type="submit" class="typeahead search-submit" value=" " onclick="Search();">
                                 </div>
                             </div>
                         </div>
                         <div class="widget sidebar-widget jobs-filter-widget">
-                            <h5 class="widget-title">Filter Results</h5>
+                            <h5 class="widget-title">Filter Results <a onclick="viewModel.searchParams.placeType(null)" href="javascript:void(0)">X</a></h5>
                             <p id="filterReset"></p>
                             <div class="widget-content">
                                 <h6 id="businessTitleFacetTitle">Place Type</h6>
                                 <ul id="posting_type_facets" class="filter-list" data-bind="foreach: typeFacets">
                                     <li>
-                                        <label>
-                                            <input type="checkbox" class="facet" data-bind="value: value" /> <span data-bind="text: text"></span>
-                                        </label>
+                                        <a href="#" class="facet-filter" data-bind="text: text, attr:{'data-facet': value}"></a>
                                     </li>
                                 </ul>
                             </div>

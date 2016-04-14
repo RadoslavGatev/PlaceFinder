@@ -18,15 +18,18 @@ namespace PlaceFinder.Services
 
         public PlaceService()
         {
-            string searchServiceName = ConfigurationManager.AppSettings["SearchServiceName"];
-            string apiKey = ConfigurationManager.AppSettings["SearchServiceApiKey"];
+            string searchServiceName =
+                ConfigurationManager.AppSettings["SearchServiceName"];
+            string apiKey =
+                ConfigurationManager.AppSettings["SearchServiceApiKey"];
 
             // Create an HTTP reference to the catalog index
-            _searchClient = new SearchServiceClient(searchServiceName, new SearchCredentials(apiKey));
+            _searchClient = new SearchServiceClient(searchServiceName,
+                new SearchCredentials(apiKey));
             _indexClient = _searchClient.Indexes.GetClient(IndexName);
         }
 
-        public async Task<DocumentSearchResult<Place>> Search(string query, bool typeFacet)
+        public async Task<DocumentSearchResult<Place>> Search(string query, bool typeFacet, string typeFilter)
         {
             SearchParameters sp = new SearchParameters()
             {
@@ -39,6 +42,11 @@ namespace PlaceFinder.Services
                 //HighlightPreTag = "<b>",
                 //HighlightPostTag = "</b>"
             };
+
+            if (typeFilter != null)
+            {
+                sp.Filter = "place_type eq '" + typeFilter + "'";
+            }
 
             if (typeFacet)
             {
@@ -58,8 +66,8 @@ namespace PlaceFinder.Services
                 Top = 8
             };
 
-            return await _indexClient.Documents.SuggestAsync(searchText, "place-suggester", sp);
+            return await _indexClient.Documents.SuggestAsync(searchText,
+                "place-suggester", sp);
         }
-
     }
 }

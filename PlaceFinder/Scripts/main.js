@@ -1,17 +1,18 @@
 var viewModel = {
     places: ko.observableArray([]),
     typeFacets: ko.observableArray([]),
-    placesCount: ko.observable(0)
-}, map = null;
+    placesCount: ko.observable(0),
+    searchParams: {
+        query: ko.observable(""),
+        placeType: ko.observable(null)
+    }
+};
+
+var map = null;
 
 function Search() {
-    var query = $("#q").val();
-
     $.get("api/places/search",
-        {
-            query: query,
-            //facets filter
-        },
+       ko.toJS(viewModel.searchParams),
         function (data) {
             var places = $.map(data.results, function (result) {
                 return result.document;
@@ -32,24 +33,16 @@ function Search() {
         });
 }
 
-viewModel.places.subscribe(function (places) {
-    map.entities.clear();
-    for (var i = 0; i < places.length; i++) {
-        var pushpin = new Microsoft.Maps.Pushpin(places[i].location, null);
-        map.entities.push(pushpin);
-    }
+
+
+viewModel.searchParams.query.subscribe(function () {
+    //reset it
+    viewModel.searchParams.placeType(null);
 });
+viewModel.searchParams.placeType.subscribe(Search);
 
 $(function () {
     ko.applyBindings(viewModel);
-
-    $("#q").autocomplete({
-        source: "/api/places/suggest",
-        minLength: 2,
-        select: function (event, ui) {
-            Search();
-        }
-    });
 
     map = new Microsoft.Maps.Map(document.getElementById("jobs-page-map"),
            {
@@ -57,4 +50,27 @@ $(function () {
                center: { latitude: 42.69562247634483, longitude: 23.322418397495518 },
                zoom: 12
            });
+
+    viewModel.places.subscribe(function (places) {
+        map.entities.clear();
+        for (var i = 0; i < places.length; i++) {
+            var pushpin = new Microsoft.Maps.Pushpin(places[i].location, null);
+            map.entities.push(pushpin);
+        }
+    });
+
+    $("#q").autocomplete({
+        source: "/api/places/suggest",
+        minLength: 2,
+        select: function () {
+            $("#q").trigger("change");
+        }
+    });
+
+    $("body").on("click", ".facet-filter", function (e) {
+        e.preventDefault();
+        viewModel.searchParams.placeType($(this).data("facet"));
+    });
+
+    Search();
 });

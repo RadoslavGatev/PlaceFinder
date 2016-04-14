@@ -631,8 +631,9 @@ fieldset[disabled] .checkbox-inline {
 	margin: 0;
 	display: none;
 }
-.filter-list span {
+.filter-list a {
 	position: relative;
+	display: block;
 	line-height: 2.1em;
 	color: inherit;
 	text-decoration: none;
